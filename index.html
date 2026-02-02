@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>التلميذ الحديدي</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="الحديدي" />
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3587/3587033.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+      window.process = { env: { API_KEY: "" } };
+      window.global = window;
+    </script>
+
+    <style>
+      body { 
+        font-family: 'Cairo', sans-serif; 
+        background-color: #f8fafc; 
+        margin: 0; 
+        overflow-x: hidden;
+        -webkit-tap-highlight-color: transparent;
+      }
+      #splash-screen {
+        position: fixed; inset: 0; background: #2563eb;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        z-index: 9999; transition: opacity 0.5s ease-out;
+      }
+      .loader {
+        width: 35px; height: 35px; border: 4px solid rgba(255,255,255,0.2);
+        border-bottom-color: #fff; border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      html, body { overscroll-behavior-y: contain; }
+    </style>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@18.2.0",
+        "react-dom": "https://esm.sh/react-dom@18.2.0",
+        "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+        "react/": "https://esm.sh/react@18.2.0/",
+        "react-dom/": "https://esm.sh/react-dom@18.2.0/",
+        "@google/genai": "https://esm.sh/@google/genai@1.3.0"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <div id="splash-screen">
+      <div class="loader mb-4"></div>
+      <h1 class="text-white font-black text-xl">التلميذ الحديدي</h1>
+      <p class="text-blue-100 text-[10px] mt-2 opacity-70 font-bold">نظام PWA مفعل</p>
+    </div>
+    
+    <div id="root"></div>
+    
+    <script type="module" src="./index.tsx"></script>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('SW Registered'))
+            .catch(err => console.log('SW Failed', err));
+        });
+      }
+
+      setTimeout(() => {
+        const splash = document.getElementById('splash-screen');
+        if (splash && splash.style.display !== 'none') {
+          splash.style.opacity = '0';
+          setTimeout(() => { splash.style.display = 'none'; }, 500);
+        }
+      }, 3000);
+    </script>
+  </body>
+</html>
