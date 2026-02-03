@@ -74,7 +74,7 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('Ir_Student/sw.js')
+          navigator.serviceWorker.register('/blob/main/sw.js')
             .then(reg => console.log('SW Registered'))
             .catch(err => console.log('SW Failed', err));
         });
