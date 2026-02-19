@@ -59,7 +59,7 @@
       }
     }
     </script>
-    <script type="module" crossorigin src="/Ir_Student/assets/index-q08dknnm.js"></script>
+    <script type="module" crossorigin src="/Ir_Student/assets/index-BqtKJmQT.js"></script>
   </head>
   <body>
     <div id="splash-screen">
@@ -73,12 +73,12 @@
 
     <script>
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('https://github.com/abdelrahmanabdelzaher17-stack/Ir_Student/blob/main/sw.js')
-            .then(reg => console.log('SW Registered'))
-            .catch(err => console.log('SW Failed', err));
-        });
-      }
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')  // استخدم مسار نسبي
+        .then(reg => console.log('SW Registered'))
+        .catch(err => console.log('SW Failed', err));
+    });
+  }
 
       setTimeout(() => {
         const splash = document.getElementById('splash-screen');
