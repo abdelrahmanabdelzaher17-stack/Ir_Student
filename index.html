@@ -74,12 +74,16 @@
     <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      // الحصول على المسار الصحيح ديناميكياً
-      const swPath = `${window.location.pathname.replace(/\/$/, '')}/sw.js`;
+      // هذا السطر يضمن أننا نبحث عن الملف في المجلد الحالي للموقع
+      const swUrl = './sw.js'; 
       
-      navigator.serviceWorker.register(swPath)
-        .then(reg => console.log('✅ تم تسجيل ServiceWorker بنجاح لـ Scope:', reg.scope))
-        .catch(err => console.error('❌ فشل تسجيل ServiceWorker:', err));
+      navigator.serviceWorker.register(swUrl)
+        .then(registration => {
+          console.log('✅ SW Registered in scope:', registration.scope);
+        })
+        .catch(error => {
+          console.error('❌ SW Registration failed:', error);
+        });
     });
   }
 </script>
