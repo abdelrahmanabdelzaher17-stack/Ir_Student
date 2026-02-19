@@ -3,8 +3,6 @@ const ASSETS = [
   './',               // لاحظ النقطة هنا
   './index.html',     // لاحظ النقطة هنا
   './manifest.json',
-  'https://cdn.tailwindcss.com',
-  'https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap'
 ];
 // تثبيت Service Worker
 self.addEventListener('install', (event) => {
